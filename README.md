@@ -71,3 +71,7 @@ This is a practice and problem-authoring platform, not a full Codeforces clone: 
 Before opening public access, connect and verify the external judge with accepted, incorrect, timeout, runtime-error, and compile-error programs. Unit tests validate comparison rules and data exposure; they do not prove the isolation of your external judge installation.
 
 Sources: [Judge0 API](https://ce.judge0.com/), [Judge0 deployment](https://github.com/judge0/judge0/blob/master/CHANGELOG.md#v1131-2024-04-18). The original site code is provided under MIT; vendored starter components and separately deployed Judge0 retain their upstream licenses.
+
+## Color theme
+
+The interface uses colors from [Pac-Man Theme by vampyrsoda](https://marketplace.visualstudio.com/items?itemName=vampyrsoda.pac-man-theme), version 0.0.10: charcoal `#1e2129`, yellow `#fce566`, cyan `#5ad4e6`, pink `#fc618d`, purple `#948ae3`, and green `#7bd88f`. Semantic palette variables live at the top of `app/globals.css`; the default editable accent is yellow.

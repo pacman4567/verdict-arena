@@ -21,7 +21,7 @@ export async function GET(req: Request) {
       judgeReady: !!config().JUDGE0_URL,
       brand: row
         ? JSON.parse(row.data)
-        : { name: "verdict", accent: "#2563eb" },
+        : { name: "verdict", accent: "#fce566" },
     });
   } catch (e) {
     return failure(e);

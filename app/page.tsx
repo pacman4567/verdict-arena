@@ -111,7 +111,7 @@ export default function Home() {
     [notice, setNotice] = useState(""),
     [error, setError] = useState(""),
     [loading, setLoading] = useState(true),
-    [brand, setBrand] = useState({ name: "verdict", accent: "#2563eb" });
+    [brand, setBrand] = useState({ name: "verdict", accent: "#fce566" });
   const go = (v: string) => {
     setView(v);
     setSelected(null);
