@@ -3,10 +3,28 @@
   "framework": null,
   "buildCommand": "mkdir -p public",
   "outputDirectory": "public",
-  "functions": { "api/index.mjs": { "maxDuration": 300, "includeFiles": "lib/runner.py" } },
+  "functions": {
+    "api/index.mjs": {
+      "maxDuration": 300,
+      "includeFiles": "lib/runner.py"
+    }
+  },
   "rewrites": [
-    { "source": "/submissions", "destination": "/api" },
-    { "source": "/submissions/batch", "destination": "/api" },
-    { "source": "/health", "destination": "/api" }
+    {
+      "source": "/submissions",
+      "destination": "/api"
+    },
+    {
+      "source": "/submissions/batch",
+      "destination": "/api"
+    },
+    {
+      "source": "/health",
+      "destination": "/api"
+    },
+    {
+      "source": "/languages",
+      "destination": "/api"
+    }
   ]
 }

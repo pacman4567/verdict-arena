@@ -18,6 +18,11 @@ export function createHandler({getStore=redis,background=waitUntil,process=proce
         await client.ping();
         return send(env.JUDGE_SANDBOX_SNAPSHOT_ID?200:503,{configured:!!env.JUDGE_SANDBOX_SNAPSHOT_ID});
       }
+      if(req.method==='GET' && url.pathname==='/languages') {
+        if(!env.JUDGE_SANDBOX_SNAPSHOT_ID) return send(503,{error:'Judge snapshot is not configured'});
+        await client.ping();
+        return send(200,[{id:54,name:'C++17'},{id:71,name:'Python 3'},{id:63,name:'JavaScript (Node.js)'}]);
+      }
       if(!['/submissions','/submissions/batch'].includes(url.pathname)) return send(404,{error:'Not found'});
       if(req.method==='GET') {
         const tokens=(url.searchParams.get('tokens') || '').split(',');

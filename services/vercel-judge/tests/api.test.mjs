@@ -34,3 +34,8 @@ test('invalid batches are rejected in full before scheduling',async()=>{
  assert.equal(s.processed(),0); assert.equal(s.records.size,0);
  assert.equal((await s.request('POST','/submissions','{')).status,400);
 });
+
+test('administrator connection check receives all supported language IDs',async()=>{
+ const s=setup(); const response=await s.request('GET','/languages');
+ assert.equal(response.status,200); assert.deepEqual(response.body.map(l=>l.id),[54,71,63]);
+});

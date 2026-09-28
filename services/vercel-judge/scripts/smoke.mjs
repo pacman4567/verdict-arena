@@ -20,6 +20,7 @@ const cases=[
  {name:'network isolation',source:'import socket\ntry:\n socket.create_connection(("1.1.1.1",443),timeout=.5)\n print("CONNECTED")\nexcept OSError:\n print("BLOCKED")',language:71,id:3,out:'BLOCKED\n'}
 ];
 await api('/health');
+assert.deepEqual((await api('/languages')).map(l=>l.id),[54,71,63]);
 const tokens=await api('/submissions/batch?base64_encoded=true',{submissions:cases.map(c=>({source_code:enc(c.source),stdin:enc(c.input??'3 5\n'),language_id:c.language,cpu_time_limit:1,wall_time_limit:3,memory_limit:262144,enable_network:false}))});
 const deadline=Date.now()+300000;
 let results;
