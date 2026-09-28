@@ -52,3 +52,7 @@ judge/judge0.conf
 
 !.env.example
 *.tsbuildinfo
+
+# Independent Vercel judge service
+services/vercel-judge/node_modules/
+__pycache__/

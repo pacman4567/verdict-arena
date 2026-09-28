@@ -1,6 +1,6 @@
 # Verdict Arena
 
-A customizable competitive programming site built with React/Vinext, Cloudflare Workers, D1, and a Judge0 adapter.
+A customizable competitive programming site built with React/Vinext, Cloudflare Workers, D1, and a pluggable execution adapter.
 
 ## Features
 
@@ -11,13 +11,13 @@ A customizable competitive programming site built with React/Vinext, Cloudflare 
 - Exact, token, floating-point, and sandboxed custom Python checkers.
 - Editable site name and accent color.
 - ChatGPT sign-in with server-side administrator authorization.
-- Dedicated Judge0 Docker setup and GitHub CI.
+- Vercel Sandbox judge service, optional Judge0 Docker setup, and GitHub CI.
 
 ## Current deployment
 
-The website is prepared for Sites hosting. Publication is pending restoration of the Sites plugin publishing helpers. Source is mirrored to this GitHub repository. Editing or pushing this GitHub repository does **not** automatically publish the Site; build and publish through Sites after changes.
+The website uses Sites hosting. Source is mirrored to this GitHub repository. Editing or pushing this GitHub repository does **not** automatically publish the Site; build and publish through Sites after changes.
 
-Real code execution requires connecting a Judge0 server. The interface disables submission until configured; it does not simulate verdicts. See [judge setup](docs/JUDGE.md). This repository contains no API tokens.
+Real code execution requires connecting the [Vercel judge service](docs/VERCEL-JUDGE.md) or a Judge0 server. The interface disables submission until configured; it does not simulate verdicts. See [judge setup](docs/JUDGE.md). This repository contains no API tokens.
 
 ## Local development
 
@@ -54,15 +54,16 @@ Use Problem studio for everyday editing. Implementation map:
 | `lib/judge.ts` | Judge0 execution, polling, custom checker orchestration |
 | `app/api/*` | Authenticated APIs |
 | `db/schema.ts` | Persistent data model |
-| `judge/` | Dedicated judge host setup |
+| `judge/` | Optional dedicated Judge0 host setup |
+| `services/vercel-judge/` | Vercel execution service, sandbox supervisor, tests and provisioning |
 
-Hidden starter tests live in server source and are filtered from public responses. A repository collaborator can read them; replace starter tests for real competitions. The repository is private by default.
+Hidden starter tests live in server source and are filtered from public responses. This GitHub repository is public, so anyone can read starter tests. Add real competition tests through the administrator studio; do not commit them.
 
 ## Deployment and access
 
 `.openai/hosting.json` identifies the Site and its logical D1 binding. Keep credentials in Sites environment settings, not this manifest. Set `ADMIN_EMAILS` and the Judge0 environment values from `.env.example`. Runtime environment changes need a new deployment. Sites private access and app administrator permissions are separate: private access controls who can visit; ADMIN_EMAILS controls who can edit.
 
-The initial site is owner-private. Open sharing only when the judge is tested and you are ready for participants. Sign-in uses the platform-dispatched ChatGPT authentication flow; deploying outside Sites needs a separately configured trusted authentication gateway and D1 bindings. Never expose an unprotected server that trusts user-supplied identity headers.
+Site access is managed in Sites; this site currently allows public visitors. Administrator actions still require an allowlisted signed-in account. Sign-in uses the platform-dispatched ChatGPT authentication flow; deploying outside Sites needs a separately configured trusted authentication gateway and D1 bindings. Never expose an unprotected server that trusts user-supplied identity headers.
 
 ## Scope and operational limits
 

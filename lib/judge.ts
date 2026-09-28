@@ -38,6 +38,8 @@ export async function judge(path: string, method = "GET", data?: unknown) {
   const headers: Record<string, string> = {
     "Content-Type": "application/json",
   };
+  if (c.JUDGE_VERCEL_BYPASS_SECRET)
+    headers["x-vercel-protection-bypass"] = c.JUDGE_VERCEL_BYPASS_SECRET;
   if (c.JUDGE0_AUTH_TOKEN) headers["X-Auth-Token"] = c.JUDGE0_AUTH_TOKEN;
   if (c.JUDGE0_RAPIDAPI_KEY) {
     headers["X-RapidAPI-Key"] = c.JUDGE0_RAPIDAPI_KEY;
@@ -128,6 +130,8 @@ export async function refresh(s: Submission) {
             6: "Compilation Error",
             13: "Judge Error",
             14: "Judge Error",
+            15: "Memory Limit Exceeded",
+            16: "Output Limit Exceeded",
           } as Record<number, string>
         )[r.status.id] || "Runtime Error";
       continue;
