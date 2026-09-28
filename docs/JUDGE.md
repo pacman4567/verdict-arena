@@ -1,5 +1,7 @@
 # Connect real code execution
 
+For the Vercel backend, follow [Vercel Sandbox judge](VERCEL-JUDGE.md). The Docker instructions below are an alternative.
+
 Verdict never runs participant code in the web server. It sends code and test input to Judge0 over authenticated HTTPS. Until connected, the UI explicitly shows that judging needs setup and rejects submissions rather than inventing verdicts.
 
 ## Dedicated Linux server
